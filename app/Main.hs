@@ -7,32 +7,13 @@ import qualified Data.ByteString.Lazy.Char8    as BS
 import qualified Turtle
 import qualified Howl
 import qualified System.Environment
-import qualified Web.Spock                     as Server
-import qualified Web.Spock.Config              as Server.Config
-import qualified Web.Spock.Lucid               as Server.Lucid
-                                                ( lucid )
 
-import           Prelude                 hiding ( FilePath
-                                                , readFile
-                                                )
+import           Prelude                 hiding ( FilePath, readFile )
 import           Filesystem                     ( readFile )
-import           Filesystem.Path.CurrentOS     as Path
+import           Filesystem.Path.CurrentOS
 import           Options.Applicative
 import           Command
-import           Data.Semigroup                 ( (<>) )
-import           Control.Monad.IO.Class         ( liftIO )
-import           Control.Monad                  ( forM_ )
-import           Data.Text                      ( Text )
-import           Data.IORef
-import           Lucid
-
-{--
-    To do:
-        - Configurable JSON model
-        - YAML support
-        - Route personalization
-        - Refactor
---}
+import           SpockServer
 
 showHelpOnErrorExecParser :: ParserInfo a -> IO a
 showHelpOnErrorExecParser = customExecParser (prefs showHelpOnError)
@@ -57,23 +38,3 @@ runRead filePath = do
     modelJSON    <- readFile absolutePath
     runServer $ BS.fromStrict modelJSON
     return ()
-
--- Daqui pra baixo ta uma zona
-
-newtype ServerState = ServerState {model :: IORef BS.ByteString}
-type ServerM a = Server.SpockM () () ServerState a
-
-runServer :: BS.ByteString -> IO ()
-runServer model = do
-    serverState <- ServerState <$> newIORef model
-    cfg         <- Server.Config.defaultSpockCfg ()
-                                                 Server.Config.PCNoDatabase
-                                                 serverState
-    Server.runSpock 7676 (Server.spock cfg app)
-
-app :: ServerM ()
-app = do
-    model'   <- Server.getState >>= (liftIO . readIORef . model)
-    response <- liftIO $ Howl.randomInstanceOf model'
-    Server.get Server.root $ Server.json response
-
