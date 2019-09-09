@@ -22,3 +22,15 @@ test_script:
 # descriptor
 - echo "" | stack --no-terminal test
 - stack install
+
+deploy:
+  release: howl-v$(appveyor_build_version)
+  provider: GitHub
+  auth_token:
+    secure: Pa1RtLyD4zTPg9Tk7ygYXzirZFMOzodwSEofp709aD/j2i1ERzqTRYjjX/L1b52i
+  artifact: C:\Users\appveyor\AppData\Roaming\local\bin\howl.exe
+  draft: false
+  prerelease: false
+  on:
+    branch: master                 # release from master branch only
+    APPVEYOR_REPO_TAG: true        # deploy on tag push only
