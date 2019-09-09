@@ -1,0 +1,10 @@
+{
+    "name": "bob",
+    "age": 42,
+    "sport": "chess",
+    "properties": {
+        "level": 30,
+        "class": "slayer",
+        "setup": "ranged"
+    }
+}

@@ -1,0 +1,54 @@
+library:
+  source-dirs:
+  - src
+tests:
+  Howl-test:
+    source-dirs: test
+    main: Spec.hs
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - Howl
+copyright: 2019 Augusto Dias
+maintainer: augusto@stilingue.com.br
+dependencies:
+- unordered-containers
+- tf-random
+- text-show-instances
+- random
+- bytestring
+- base >= 4.7 && < 5
+- aeson
+- Spock
+- text
+- string-random
+- scientific
+- turtle
+- optparse-applicative
+- system-filepath
+- system-fileio
+- http-types
+- mtl
+- lucid
+- Spock-lucid
+name: Howl
+version: 0.1.0.0
+extra-source-files:
+- README.md
+- ChangeLog.md
+author: Augusto Dias
+github: augustohdias/Howl
+license: BSD3
+executables:
+  Howl-exe:
+    source-dirs: app
+    main: Main.hs
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - Howl
+description: Please see the README on GitHub at <https://github.com/githubuser/Howl#readme>
