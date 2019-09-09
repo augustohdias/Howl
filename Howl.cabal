@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: eb1f9bd2a32c811eb65bafedbb58e2ecbaa124c5a19f9921fac88d34ea5ffdc2
+-- hash: 236c842d3e01cd548b2e53c919e75ceebbc3705c51132e750faf97b4556e89a4
 
 name:           Howl
-version:        0.1.0.0
+version:        0.0.1.0
 description:    Please see the README on GitHub at <https://github.com/githubuser/Howl#readme>
 homepage:       https://github.com/augustohdias/Howl#readme
 bug-reports:    https://github.com/augustohdias/Howl/issues
@@ -36,7 +36,6 @@ library
       src
   build-depends:
       Spock
-    , Spock-lucid
     , aeson
     , base >=4.7 && <5
     , bytestring
@@ -66,7 +65,6 @@ executable howl
   build-depends:
       Howl
     , Spock
-    , Spock-lucid
     , aeson
     , base >=4.7 && <5
     , bytestring
@@ -97,7 +95,6 @@ test-suite Howl-test
   build-depends:
       Howl
     , Spock
-    , Spock-lucid
     , aeson
     , base >=4.7 && <5
     , bytestring

@@ -95,13 +95,6 @@ packages:
       sha256: c23d41e112198ffb15c57101c90feb3e7dbf2771e48610e3c30fb367f92eaaeb
   original:
     hackage: optparse-applicative-0.14.3.0
-- completed:
-    hackage: Spock-lucid-0.4.0.1@sha256:fa2c6ae737bad26767820af29c913140a657acbf745e90c9f9d4a184953855dc,1117
-    pantry-tree:
-      size: 269
-      sha256: e0c8e85d0fce0a307ef5c52f9e00beebc3a79f984338ec088e9e6f15a2879209
-  original:
-    hackage: Spock-lucid-0.4.0.1@sha256:fa2c6ae737bad26767820af29c913140a657acbf745e90c9f9d4a184953855dc,1117
 snapshots:
 - completed:
     size: 523884

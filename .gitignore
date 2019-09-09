@@ -1,3 +1,4 @@
 .stack-work/
 jOwl.cabal
 *~
+stack.yaml.lock
