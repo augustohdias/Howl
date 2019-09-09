@@ -1,3 +1,3 @@
-# Changelog for jOwl
+# Changelog for Howl
 
 ## Unreleased changes
