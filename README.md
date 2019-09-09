@@ -21,24 +21,33 @@ It's quite simple:
 howl read <sample path>
 ```
 
-## UNIX systems installation
+## Installation
 
-### case stackInstalled of: False ->
+You can compile or get the [pre-built releases](https://github.com/augustohdias/Howl/releases).
 
-1. Install [stack](https://docs.haskellstack.org/en/stable/README/). 
+### Compile on linux
+
+You will need ncurses and ncurses-compat-libs installed. If you are smart and uses Arch or Manjaro distros, you can get it on AUR.
+
+**yay example**
+```
+yay -Syu ncurses ncurses-compat-libs
+```
+
+After you get both, you're ready to compile.
+
+1. Install [stack](https://docs.haskellstack.org/en/stable/README/).
 2. Run the commands below.
-
-### case stackInstalled of: True ->
-
-```
-git clone https://github.com/augustohdias/Howl.git
-cd Howl
-stack setup
-stack install
-```
-
+  ```
+  git clone https://github.com/augustohdias/Howl.git
+  cd Howl
+  stack setup
+  stack install
+  ```
+ 
 Make sure `~/.local/bin` is on your `PATH`.
 
-## Windows installation
 
-I don't care about Windows.
+### Windows installation
+
+I recommend the pre-built releases for Windows users, but you can compile it with stack as explained above.
