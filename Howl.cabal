@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 9d35254dc0ce73a98365cd74712f98fcee9b52d43e1412808c309a67f9d3c100
+-- hash: b5a02d9393e274bbafb7ec15e202def73699bb6f1f052a6c6ef4389695b38d05
 
 name:           Howl
 version:        0.1.0.0
@@ -55,7 +55,7 @@ library
     , unordered-containers
   default-language: Haskell2010
 
-executable Howl-exe
+executable howl
   main-is: Main.hs
   other-modules:
       Paths_Howl

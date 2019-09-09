@@ -42,7 +42,7 @@ author: Augusto Dias
 github: augustohdias/Howl
 license: BSD3
 executables:
-  Howl-exe:
+  howl:
     source-dirs: app
     main: Main.hs
     ghc-options:
