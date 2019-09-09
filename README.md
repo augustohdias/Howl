@@ -4,7 +4,7 @@ Tiny CLI for fake APIs
 
 ## Wut
 
-Howl implements a fake API that runs locally. It basically reads a JSON sample and provides a new one at `localhost:7676`. So, when you `GET localhost:7676`, you will find a randomized JSON.
+Howl implements a fake API that runs locally. It basically reads a JSON sample and provides a new one at `localhost:7676`. So, when you `GET localhost:7676`, you will be served with a randomized JSON.
 
 ## Why Haskell?
 
