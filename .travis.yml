@@ -93,5 +93,7 @@ deploy:
   provider: releases
   api_key: "$OAUTH_TOKEN"
   file: "/home/travis/.local/bin/howl"
+  skip_cleanup: true
+  draft: true
   on:
     repo: augustohdias/Howl
