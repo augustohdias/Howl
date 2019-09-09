@@ -27,7 +27,7 @@ deploy:
   release: howl-v$(appveyor_build_version)
   provider: GitHub
   auth_token:
-    secure: Pa1RtLyD4zTPg9Tk7ygYXzirZFMOzodwSEofp709aD/j2i1ERzqTRYjjX/L1b52i
+    secure: TVsVRmN1rXlYJyeqnh84MvFLvnqvrPsB4SKkHYy5SOrOI19rHnJfr8pcWw40zyrp
   artifact: C:\Users\appveyor\AppData\Roaming\local\bin\howl.exe
   draft: true
   prerelease: false
