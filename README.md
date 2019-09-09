@@ -1,7 +1,6 @@
 # Haskell Owl (Howl)
-[![Linux Build Status](https://travis-ci.com/augustohdias/Howl.svg?branch=master)](https://travis-ci.com/augustohdias/Howl) [![Windows Build Status](https://travis-ci.com/augustohdias/Howl.svg?branch=master)](https://travis-ci.com/augustohdias/Howl)
-
 ## Tiny CLI for fake APIs
+Linux: [![Linux Build Status](https://travis-ci.com/augustohdias/Howl.svg?branch=master)](https://travis-ci.com/augustohdias/Howl) Windows: [![Windows Build Status](https://travis-ci.com/augustohdias/Howl.svg?branch=master)](https://travis-ci.com/augustohdias/Howl)
 
 ## Wut
 
