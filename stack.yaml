@@ -53,7 +53,6 @@ extra-deps:
   - scientific-0.3.6.2
   - turtle-1.5.14
   - optparse-applicative-0.14.3.0
-  - Spock-lucid-0.4.0.1@sha256:fa2c6ae737bad26767820af29c913140a657acbf745e90c9f9d4a184953855dc,1117
 
 # Override default flag values for local packages and extra-deps
 # flags: {}
