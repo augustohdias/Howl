@@ -24,6 +24,11 @@ howl read <sample path>
 
 ## UNIX systems installation
 
+### case stackInstalled of: False ->
+
+1. Install [stack](https://docs.haskellstack.org/en/stable/README/). 
+2. Run the commands below.
+
 ### case stackInstalled of: True ->
 
 ```
@@ -34,11 +39,6 @@ stack install
 ```
 
 Make sure `~/.local/bin` is on your `PATH`.
-
-### case stackInstalled of: False ->
-
-1. Install [stack](https://docs.haskellstack.org/en/stable/README/). 
-2. Run the commands above.
 
 ## Windows installation
 
