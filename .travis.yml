@@ -92,6 +92,6 @@ script:
 deploy:
   provider: releases
   api_key: "$OAUTH_TOKEN"
-  file: "~/.local/bin/howl"
+  file: "/home/travis/.local/bin/howl"
   on:
     repo: augustohdias/Howl
