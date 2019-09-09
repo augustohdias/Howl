@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/augustohdias/Howl.svg?branch=master)](https://travis-ci.com/augustohdias/Howl)
+
 # Haskell Owl (Howl)
 
 Tiny CLI for fake APIs
