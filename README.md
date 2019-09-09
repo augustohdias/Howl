@@ -1,7 +1,6 @@
 # Haskell Owl (Howl)
 ## Tiny CLI for fake APIs
-Linux: [![Linux Build Status](https://travis-ci.com/augustohdias/Howl.svg?branch=master)](https://travis-ci.com/augustohdias/Howl) Windows: [![Windows Build Status](https://travis-ci.com/augustohdias/Howl.svg?branch=master)](https://travis-ci.com/augustohdias/Howl)
-
+[![Linux Build Status](https://travis-ci.com/augustohdias/Howl.svg?branch=master)](https://travis-ci.com/augustohdias/Howl)
 ## Wut
 
 Howl implements a fake API that runs locally. It basically reads a JSON sample and provides a new one at `localhost:7676`. So, when you `GET localhost:7676`, you will be served with a randomized JSON.
