@@ -88,6 +88,7 @@ script:
       ;;
   esac
   set +ex
+- stack install
 deploy:
   provider: releases
   api_key:
