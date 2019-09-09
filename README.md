@@ -50,4 +50,5 @@ Make sure `~/.local/bin` is on your `PATH`.
 
 ### Windows installation
 
-I recommend the pre-built releases for Windows users, but you can compile it with stack as explained above.
+I recommend the pre-built releases for Windows users, but you can compile it with stack, as explained above.`stack install` will create an executable (`howl.exe`) at `C:\Users\<USER>\AppData\Roaming\local\bin\`
+
