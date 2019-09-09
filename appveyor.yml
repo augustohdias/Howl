@@ -29,7 +29,7 @@ deploy:
   auth_token:
     secure: Pa1RtLyD4zTPg9Tk7ygYXzirZFMOzodwSEofp709aD/j2i1ERzqTRYjjX/L1b52i
   artifact: C:\Users\appveyor\AppData\Roaming\local\bin\howl.exe
-  draft: false
+  draft: true
   prerelease: false
   on:
     branch: master                 # release from master branch only
