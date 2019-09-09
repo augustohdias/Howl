@@ -91,8 +91,7 @@ script:
 - stack install
 deploy:
   provider: releases
-  api_key:
-    secure: b2a5YFFDjQVTNg0tCk5yOSAovwrh47bnmRnAdDj9oFoEG98s/pWATDxEa4JoK0E3atZY++X+2vF0Pk5eXp+YJ7YsZFcYy9UM1HsHVD20ULkLKselrakUu8aEvzA7dVZvEXEBKHydmxWSgT+MfaEvMc6rk+BEZ/2mXC6k/QT+VrJFs54VEihacTFxLzQCRGMLr4KyTB0SyQDQTK0gVKF5oUzDV7gaDykJvCX9TCkivodgY5j2TW9dZU7I/28FmWOV+hutmkFSsTfSd6mhto6wEfSo1jNQopImYEidiJo+opgFihB6MsPYhbhEvTg7vCuF+EKBNDWOLN9i68JYfLu+Zq48/97aCXHHPvWzlUJaaPYzOJQVpKpCvE7pXU0mCc/BXb/uatr5fXeu9nQyAKRJKi3WV5Xds4H7B8YCTrF5zfBnFTIfAN5eOz4oR13py4E3PHmtqUm7StTYMyvu+WVApj0j5erKLVknd6Zz8jEvP/8kwGrFSYZjIA/R98puQzS9i+avZHeMaukAhLb/MW/ajjPHLY11BGFgD22j8wCS4yCD+kMCSwdamYBcdmLPQ9oEeH35QJ/quaoZfi78ONcbDCU8ethD/+FKUIOK6ViUqusGYhq3/szL7Mx3OHLf36DSstCtyKBxhlKPm4I0I7r5OCJoMFIBm40F6KPcrDlyw34=
+  api_key: "$OAUTH_TOKEN"
   file: "~/.local/bin/howl"
   on:
     repo: augustohdias/Howl
