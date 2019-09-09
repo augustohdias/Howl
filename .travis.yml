@@ -16,10 +16,7 @@ matrix:
       apt:
         packages:
         - libgmp-dev
-  - name: OSX Build
-    env: BUILD=stack ARGS=""
-    compiler: ": #stack 8.6.5 osx"
-    os: osx
+
 before_install:
 - unset CC
 - CABALARGS=""
