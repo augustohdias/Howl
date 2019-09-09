@@ -8,7 +8,7 @@ cache:
   - "$TRAVIS_BUILD_DIR/.stack-work"
 matrix:
   include:
-  - env: BUILD=stack ARGS="--resolver lts-13"
+  - env: BUILD=stack ARGS=""
     compiler: ": #stack 8.6.5"
     addons:
       apt:
