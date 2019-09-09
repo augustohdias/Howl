@@ -94,12 +94,12 @@ script:
   set +ex
 - stack install
 - chmod +x /home/travis/.local/bin/howl
-- tar -pcvzf howl.tar.gz /home/travis/.local/bin/howl
+- tar -pcvzf howl-$TRAVIS_OS_NAME.tar.gz /home/travis/.local/bin/howl
 
 deploy:
   provider: releases
   api_key: "$OAUTH_TOKEN"
-  file: "/home/travis/.local/bin/howl.tar.gz"
+  file: "/home/travis/.local/bin/howl-*.tar.gz"
   skip_cleanup: true
   draft: true
   on:
