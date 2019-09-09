@@ -8,13 +8,16 @@ cache:
   - "$TRAVIS_BUILD_DIR/.stack-work"
 matrix:
   include:
-  - env: BUILD=stack ARGS=""
+  - name: Linux Build
+    env: BUILD=stack ARGS=""
     compiler: ": #stack 8.6.5"
+    os: linux
     addons:
       apt:
         packages:
         - libgmp-dev
-  - env: BUILD=stack ARGS=""
+  - name: OSX Build
+    env: BUILD=stack ARGS=""
     compiler: ": #stack 8.6.5 osx"
     os: osx
 before_install:
@@ -55,6 +58,7 @@ install:
       ;;
   esac
   set +ex
+
 script:
 - |
   set -ex
@@ -89,10 +93,13 @@ script:
   esac
   set +ex
 - stack install
+- chmod +x /home/travis/.local/bin/howl
+- tar -pcvzf howl.tar.gz /home/travis/.local/bin/howl
+
 deploy:
   provider: releases
   api_key: "$OAUTH_TOKEN"
-  file: "/home/travis/.local/bin/howl"
+  file: "/home/travis/.local/bin/howl.tar.gz"
   skip_cleanup: true
   draft: true
   on:
