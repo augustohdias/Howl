@@ -43,8 +43,8 @@ artifacts:
 deploy:
   - provider: GitHub
     tag: $(APPVEYOR_REPO_TAG_NAME)
-    release: howl-v$(appveyor_build_version)
-    artifact: howl.zip
+    release: howl-v$(appveyor_build_version)-windows
+    artifact: Howl
     draft: true
     auth_token:
       secure: TVsVRmN1rXlYJyeqnh84MvFLvnqvrPsB4SKkHYy5SOrOI19rHnJfr8pcWw40zyrp
