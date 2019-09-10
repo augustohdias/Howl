@@ -28,6 +28,7 @@ install:
 build: off
 
 test_script:
+  - dir \w \p
   - stack setup > nul
   - echo "" | stack --no-terminal test
 
