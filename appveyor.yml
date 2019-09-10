@@ -1,4 +1,6 @@
-version: 1.0.{build}
+build: off
+
+version: 0.0.1.{build}
 
 branches:
   only:
@@ -22,8 +24,6 @@ install:
   - cmd: 7z x stack.zip stack.exe
   - cmd: dir /w /p
   - cmd: echo Ending install
-
-build: off
 
 test_script:
   - echo start test_script
