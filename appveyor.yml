@@ -19,16 +19,18 @@ cache:
   - '%STACK_ROOT%'
 
 install:
-  - cmd: echo "Installing HaskellStack.."
+  - cmd: echo Installing HaskellStack..
   - cmd: set PATH=C:\Program Files\Git\mingw64\bin;%PATH%
   - cmd: curl -sS -ostack.zip -L --insecure http://www.stackage.org/stack/windows-i386
   - cmd: 7z x stack.zip stack.exe
-  - cmd: dir \w \p
+  - cmd: dir /w /p
+  - cmd: echo Ending install
 
 build: off
 
 test_script:
-  - dir \w \p
+  - echo start test_script
+  - dir /w /p
   - stack setup > nul
   - echo "" | stack --no-terminal test
 
