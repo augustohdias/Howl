@@ -37,7 +37,7 @@ after_test:
   - dir /w /p
 
 artifacts:
-  - path: 'C:\stack\howl.zip'
+  - path: howl.zip
     name: Howl
 
 deploy:
