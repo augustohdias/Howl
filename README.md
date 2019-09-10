@@ -25,7 +25,9 @@ howl read <sample path>
 
 You can compile or get the [pre-built releases](https://github.com/augustohdias/Howl/releases).
 
-### Compile on linux
+### Linux
+
+#### Dependencies
 
 You will need ncurses and ncurses-compat-libs installed. If you are smart and uses Arch or Manjaro distros, you can get it on AUR.
 
@@ -33,6 +35,8 @@ You will need ncurses and ncurses-compat-libs installed. If you are smart and us
 ```
 yay -Syu ncurses ncurses-compat-libs
 ```
+
+#### Compilation guide
 
 After you get both, you're ready to compile.
 
@@ -48,7 +52,18 @@ After you get both, you're ready to compile.
 Make sure `~/.local/bin` is on your `PATH`.
 
 
-### Windows installation
+### Windows
 
-I recommend the pre-built releases for Windows users, but you can compile it with stack, as explained above.`stack install` will create an executable (`howl.exe`) at `C:\Users\<USER>\AppData\Roaming\local\bin\`
+I still don1't care about Windows.
 
+#### Compilation guide
+
+1. Install [stack](https://docs.haskellstack.org/en/stable/README/).
+2. Clone this repo.
+3. Open the repo folder on PowerShell, or whatever other Windows bizarre console.
+4. Run the commands below:
+ 
+  ```
+  stack setup
+  stack install
+  ```
