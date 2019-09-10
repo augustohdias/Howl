@@ -1,35 +1,54 @@
-build: off
+version: 1.0.{build}
 
-before_test:
-# http://help.appveyor.com/discussions/problems/6312-curl-command-not-found
-- set PATH=C:\Program Files\Git\mingw64\bin;%PATH%
+skip_tags: false
 
-- curl -sS -ostack.zip -L --insecure http://www.stackage.org/stack/windows-i386
-- 7z x stack.zip stack.exe
+skip_non_tags: true
 
-clone_folder: "c:\\stack"
+branches:
+  only:
+    - master
+
+clone_folder: c:\stack
+
 environment:
   global:
-    STACK_ROOT: "c:\\sr"
+    STACK_ROOT: C:\sr
+    TMP: C:\tmp
 
-    # Override the temp directory to avoid sed escaping issues
-    # See https://github.com/haskell/cabal/issues/5386
-    TMP: "c:\\tmp"
+cache:
+  - '%STACK_ROOT%'
+
+install:
+  - cmd: echo "Installing HaskellStack.."
+  - cmd: set PATH=C:\Program Files\Git\mingw64\bin;%PATH%
+  - cmd: curl -sS -ostack.zip -L --insecure http://www.stackage.org/stack/windows-i386
+  - cmd: 7z x stack.zip stack.exe
+  - cmd: dir \w \p
+
+build: off
 
 test_script:
-- stack setup > nul
-# The ugly echo "" hack is to avoid complaints about 0 being an invalid file
-# descriptor
-- echo "" | stack --no-terminal test
-- stack install
+  - stack setup > nul
+  - echo "" | stack --no-terminal test
+
+after_test:
+  - stack install
+  - 7z a howl.zip C:\Users\appveyor\AppData\Roaming\local\bin\howl.exe
+  - dir \w \p
+
+artifacts:
+  - path: howl.zip
+    name: Howl
 
 deploy:
-  release: howl-v$(appveyor_build_version)
-  provider: GitHub
-  auth_token:
-    secure: TVsVRmN1rXlYJyeqnh84MvFLvnqvrPsB4SKkHYy5SOrOI19rHnJfr8pcWw40zyrp
-  artifact: C:\Users\appveyor\AppData\Roaming\local\bin\howl.exe
-  draft: true
-  prerelease: false
-  on:
-    branch: master                 # release from master branch only
+  - provider: GitHub
+    tag: $(APPVEYOR_REPO_TAG_NAME)
+    release: howl-v$(appveyor_build_version)
+    artifact: howl.zip
+    draft: true
+    auth_token:
+      secure: TVsVRmN1rXlYJyeqnh84MvFLvnqvrPsB4SKkHYy5SOrOI19rHnJfr8pcWw40zyrp
+    prerelease: false
+    on:
+      branch: master                # release from master branch only
+      APPVEYOR_REPO_TAG: true       # deploy on tag push only
