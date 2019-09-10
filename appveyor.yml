@@ -38,7 +38,7 @@ test_script:
 after_test:
   - stack install
   - 7z a howl.zip C:\Users\appveyor\AppData\Roaming\local\bin\howl.exe
-  - dir \w \p
+  - dir /w /p
 
 artifacts:
   - path: howl.zip
