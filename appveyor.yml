@@ -8,7 +8,7 @@ branches:
   only:
     - master
 
-clone_folder: c:\stack
+clone_folder: C:\stack
 
 environment:
   global:
@@ -17,6 +17,7 @@ environment:
 
 cache:
   - '%STACK_ROOT%'
+  - 'C:\Users\appveyor\AppData\Local\Programs\stack'
 
 install:
   - cmd: echo Installing HaskellStack..
