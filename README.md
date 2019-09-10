@@ -54,7 +54,7 @@ Make sure `~/.local/bin` is on your `PATH`.
 
 ### Windows
 
-I still don1't care about Windows.
+I still don't care about Windows.
 
 #### Compilation guide
 
