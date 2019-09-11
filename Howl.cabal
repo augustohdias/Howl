@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 2abfa80584acc958e7b8e57f230fe949a6527dbb32df968dfc30f869ceff545f
+-- hash: 8e38a0238363e8b5c5e3aa135afda872d158c504c65102fd4e3783fc2bf724f0
 
 name:           Howl
 version:        0.0.1.0
@@ -35,6 +35,9 @@ library
       Paths_Howl
   hs-source-dirs:
       src
+      src/cli
+      src/howl
+      src/spock
   build-depends:
       Spock
     , aeson

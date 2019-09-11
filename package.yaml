@@ -1,6 +1,9 @@
 library:
   source-dirs:
   - src
+  - src/cli
+  - src/howl
+  - src/spock
 tests:
   Howl-test:
     source-dirs: test

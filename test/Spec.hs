@@ -10,7 +10,7 @@ import           Data.Maybe
 
 main :: IO ()
 main = do
-  putStrLn "\nparseConfigTest:"
+  putStrLn "\n-- parseConfigTest --"
   run configParsingTest
  where
   run test = do
