@@ -1,9 +1,8 @@
 {-# LANGUAGE RecordWildCards #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module HowlConfig
+module HowlTypes
     ( parseConfigList
-    , getConfig
     , Config(..)
     )
 where
@@ -27,6 +26,3 @@ parseConfigList = withObject "ConfigObject" $ \obj ->
     for (HashMap.toList obj) $ \(fieldPath, configProp) -> do
         property <- HashMap.toList <$> parseJSON configProp
         return Config { .. }
-
-getConfig :: Object -> Maybe Value
-getConfig = HashMap.lookup "_config"

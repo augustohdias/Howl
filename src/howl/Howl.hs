@@ -1,36 +1,55 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module Howl
     ( randomInstanceOf
     , valueMapper
+    , getConfig
+    , getModel
     )
 where
 
-import qualified Data.ByteString.Lazy.Char8    as ByteString
-import qualified Data.Aeson                    as JSON
-import qualified Data.Aeson.Types              as Types
-import qualified Data.Text
 
 import           Data.Scientific                ( Scientific
                                                 , scientific
                                                 )
+import           Data.Aeson                    as JSON
+import           Data.Text                     as T
+import           Data.ByteString.Lazy.Char8    as B
+import           Data.HashMap.Strict           as H
+import           Data.Vector                   as V
+import           Data.Aeson.Types
 import           Control.Monad
 import           System.Random
+import           HowlTypes
 
-randomInstanceOf :: ByteString.ByteString -> IO JSON.Object
-randomInstanceOf model = do
-    let Just parsedJSON = JSON.decode model :: Maybe JSON.Object
-    traverse valueMapper parsedJSON
+getConfig :: Object -> Maybe Value
+getConfig = H.lookup "_config"
 
-valueMapper :: Types.Value -> IO Types.Value
+getModel :: Object -> Object
+getModel = H.delete "_config"
+
+randomInstanceOf :: Object -> [Config] -> IO Object
+randomInstanceOf model cfg = traverse valueMapper model
+
+valueMapper :: Value -> IO Value
 valueMapper value = case value of
-    Types.String _      -> Types.String . Data.Text.pack <$> randomStr
-    Types.Number _      -> Types.Number <$> randomNum
-    Types.Object object -> Types.Object <$> traverse valueMapper object
-    Types.Array  array  -> Types.Array <$> traverse valueMapper array
+    String _      -> String <$> randomStr
+    Number _      -> Number <$> randomNum
+    Object object -> Object <$> traverse valueMapper object
+    Array  array  -> Array <$> randomArray array 10
 
-randomStr :: IO String
-randomStr = replicateM 10 (randomRIO ('a', 'z'))
+randomArray :: Array -> Int -> IO (Vector Value)
+randomArray array size = do
+    let vector = V.concat $ copy size $ sample array
+    traverse valueMapper vector
+  where
+    sample = V.take 1
+    copy   = Prelude.replicate
+
+randomStr :: IO Text
+randomStr = T.pack <$> copy (randomRIO ('a', 'z'))
+    where copy = Control.Monad.replicateM 10
 
 randomNum :: IO Scientific
-randomNum = do
-    number <- randomRIO (1, 9) :: IO Integer
-    return $ scientific number 0
+randomNum = createNumber <$> randomRIO (1, 100)
+    where createNumber n = scientific n 0

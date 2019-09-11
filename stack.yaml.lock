@@ -95,6 +95,13 @@ packages:
       sha256: c23d41e112198ffb15c57101c90feb3e7dbf2771e48610e3c30fb367f92eaaeb
   original:
     hackage: optparse-applicative-0.14.3.0
+- completed:
+    hackage: vector-0.12.0.3@sha256:1422b0bcf4e7675116ca8d9f473bf239850c58c4518a56010e3bfebeac345ace,7171
+    pantry-tree:
+      size: 3429
+      sha256: 1adb067bf4b6abf2269a369e18016e5a0e6c40b876aa64dfea9f47547d915ef6
+  original:
+    hackage: vector-0.12.0.3
 snapshots:
 - completed:
     size: 523884

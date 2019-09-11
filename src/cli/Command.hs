@@ -1,8 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Command
-    (
-        Command (..),
-        parseCommand
+    ( Command(..)
+    , parseCommand
     )
 where
 
@@ -33,16 +32,16 @@ parseReadCommand :: Parser Command
 parseReadCommand = CommandRead <$> filePathParser
 
 filePathParser :: Parser FilePath
-filePathParser =
-    argument (str >>= readPath) (value "./model.json" <> metavar "FILEPATH" <> help "JSON file path.")
+filePathParser = argument
+    (str >>= readPath)
+    (value "./model.json" <> metavar "FILEPATH" <> help "JSON file path.")
 
 readPath :: String -> ReadM FilePath
 readPath s = do
     let path = Path.fromText (Text.pack s)
     if Path.valid path
         then return path
-        else readerError ("Path not found: " ++ (show path))
+        else readerError ("Path not found: " ++ show path)
 
 filePathToString :: FilePath -> String
 filePathToString = Path.encodeString
-

@@ -2,7 +2,8 @@
 
 import qualified Data.ByteString.Lazy.Char8    as BS
 
-import           HowlConfig
+import           Howl
+import           HowlTypes
 import           Data.Aeson
 import           Data.Aeson.Types              as Types
 import           Control.Monad
@@ -20,11 +21,11 @@ main = do
 configParsingTest :: IO Bool
 configParsingTest = do
   testFile <- BS.readFile "./test/test.json"
-  let Just results =
-        parseMaybe parseConfigList $ fromJust $ getConfig $ fromJust $ decode
-          testFile
+  let results = getConfigList $ fromJust $ decode testFile
   return $ results == expectedConfig
+
  where
+  expectedConfig :: [Config]
   expectedConfig =
     [ Config { fieldPath = "data.albums"
              , property  = [("otherNumericField", 1)]
@@ -33,3 +34,7 @@ configParsingTest = do
              , property  = [("size", 3), ("numericField", 1)]
              }
     ]
+
+  getConfigList :: Object -> [Config]
+  getConfigList a =
+    fromJust $ parseMaybe parseConfigList $ fromJust $ getConfig a
