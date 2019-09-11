@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 236c842d3e01cd548b2e53c919e75ceebbc3705c51132e750faf97b4556e89a4
+-- hash: 5c0982e1e5fd9700219f4aaaa1ebb002022855b434ef849bb0bdc6b998d33028
 
 name:           Howl
 version:        0.0.1.0
@@ -29,19 +29,21 @@ library
   exposed-modules:
       Command
       Howl
+      HowlTypes
       SpockServer
   other-modules:
       Paths_Howl
   hs-source-dirs:
       src
+      src/cli
+      src/howl
+      src/spock
   build-depends:
       Spock
     , aeson
     , base >=4.7 && <5
     , bytestring
     , http-types
-    , lucid
-    , mtl
     , optparse-applicative
     , random
     , scientific
@@ -53,6 +55,7 @@ library
     , tf-random
     , turtle
     , unordered-containers
+    , vector
   default-language: Haskell2010
 
 executable howl
@@ -69,8 +72,6 @@ executable howl
     , base >=4.7 && <5
     , bytestring
     , http-types
-    , lucid
-    , mtl
     , optparse-applicative
     , random
     , scientific
@@ -82,6 +83,7 @@ executable howl
     , tf-random
     , turtle
     , unordered-containers
+    , vector
   default-language: Haskell2010
 
 test-suite Howl-test
@@ -99,8 +101,6 @@ test-suite Howl-test
     , base >=4.7 && <5
     , bytestring
     , http-types
-    , lucid
-    , mtl
     , optparse-applicative
     , random
     , scientific
@@ -112,4 +112,5 @@ test-suite Howl-test
     , tf-random
     , turtle
     , unordered-containers
+    , vector
   default-language: Haskell2010

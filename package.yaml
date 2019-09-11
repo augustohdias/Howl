@@ -1,6 +1,9 @@
 library:
   source-dirs:
   - src
+  - src/cli
+  - src/howl
+  - src/spock
 tests:
   Howl-test:
     source-dirs: test
@@ -30,8 +33,7 @@ dependencies:
 - system-filepath
 - system-fileio
 - http-types
-- mtl
-- lucid
+- vector
 name: Howl
 version: 0.0.1.0
 extra-source-files:
