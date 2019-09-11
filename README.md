@@ -32,11 +32,10 @@ You can compile or get the [pre-built releases](https://github.com/augustohdias/
 
 #### Dependencies
 
-You will need ncurses and ncurses-compat-libs installed. If you are smart and uses Arch or Manjaro distros, you can get it on AUR.
+If you're going to compile it on Ubuntu, you will need to install ltinfo: 
 
-**yay example**
 ```
-yay -Syu ncurses ncurses-compat-libs
+sudo apt install ltinfo-dev
 ```
 
 #### Compilation guide
@@ -45,12 +44,12 @@ After you get both, you're ready to compile.
 
 1. Install [stack](https://docs.haskellstack.org/en/stable/README/).
 2. Run the commands below.
-  ```
+```
   git clone https://github.com/augustohdias/Howl.git
   cd Howl
   stack setup
   stack install
-  ```
+```
  
 Make sure `~/.local/bin` is on your `PATH`.
 
@@ -66,7 +65,7 @@ I still don't care about Windows.
 3. Open the repo folder on PowerShell, or whatever other Windows bizarre console.
 4. Run the commands below:
  
-  ```
+```
   stack setup
   stack install
-  ```
+```
