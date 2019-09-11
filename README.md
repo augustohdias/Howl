@@ -16,12 +16,196 @@ I like Haskell.
 
 I like 7676.
 
-## Usage
+## How it works?
 
-It's quite simple:
+Suppose the following JSON model:
+
+##### model.json
+```
+{
+    "posts": [
+        {
+            "id": "string",
+            "likes": 0,
+            "shares": 0,
+            "comments_count": 0,
+            "text": "string",
+            "comments": [
+                {
+                    "id": "string",
+                    "text": "string"
+                }
+            ]
+        }
+    ]
+}
+```
+
+Run the following command:
 
 ```
-howl read <sample path>
+./howl read model.json
+```
+
+It should outputs:
+```
+Spock is running on port 7676
+```
+Peform `GET localhost:7676/` and you should get something like this:
+
+```
+{
+	"posts": [
+		{
+			"text": "nhuobgqusv",
+			"comments_count": 4,
+			"id": "amcafrigas",
+			"comments": [
+				{
+					"text": "bqqbytkyte",
+					"id": "irtiupsseg"
+				},
+				{
+					"text": "yeoegopqrr",
+					"id": "tyrbmqhste"
+				},
+				{
+					"text": "gxhjkjalhy",
+					"id": "cbujcdqvjc"
+				},
+				{
+					"text": "mzuvtkevcw",
+					"id": "fwvmeihrkl"
+				},
+				{
+					"text": "uqcfoucviw",
+					"id": "cprndydwip"
+				},
+				{
+					"text": "gcqmlzpnxt",
+					"id": "rihpetpncz"
+				},
+				{
+					"text": "zcxcghbodl",
+					"id": "wqrjzupiun"
+				},
+				{
+					"text": "dvgboirfxu",
+					"id": "xtrrdsiiri"
+				},
+				{
+					"text": "yxyvexmfoo",
+					"id": "dqsgizkckx"
+				},
+				{
+					"text": "gxphhhxaju",
+					"id": "cfunzjibpw"
+				}
+			],
+			"likes": 52,
+			"shares": 16
+		},
+		{
+			"text": "zjqymuqndc",
+			"comments_count": 91,
+			"id": "dffwntkjjo",
+			"comments": [
+				{
+					"text": "jecplcvoyf",
+					"id": "mknyawgovd"
+				},
+				{
+					"text": "wjutnpecey",
+					"id": "xiiydfkmgo"
+				},
+				{
+					"text": "mytdrjylts",
+					"id": "lfmndtsycr"
+				},
+				{
+					"text": "rqojegqinp",
+					"id": "kpclebznkq"
+				},
+				{
+					"text": "cxuqoxgzvm",
+					"id": "rcxltrofwm"
+				},
+				{
+					"text": "zpyojkdhar",
+					"id": "gfjgtvbdjd"
+				},
+				{
+					"text": "phpiojnnxv",
+					"id": "hfvorsccqn"
+				},
+				{
+					"text": "atnhshevzv",
+					"id": "fdcbyryetx"
+				},
+				{
+					"text": "hpgplhjndb",
+					"id": "xtngfpymbe"
+				},
+				{
+					"text": "vczbdjnfbv",
+					"id": "idneqzfcql"
+				}
+			],
+			"likes": 46,
+			"shares": 76
+		},
+		{
+			"text": "ahzfqaqfdf",
+			"comments_count": 89,
+			"id": "zpisjrlklw",
+			"comments": [
+				{
+					"text": "ipalyoxkpd",
+					"id": "madgqsjbsx"
+				},
+				{
+					"text": "imoodmzctb",
+					"id": "mylfxxixbl"
+				},
+				{
+					"text": "ztrfylboue",
+					"id": "gfuinaranr"
+				},
+				{
+					"text": "fmmiyhbsqa",
+					"id": "nedetrttwv"
+				},
+				{
+					"text": "ldduptxjwm",
+					"id": "spvzrlcqzq"
+				},
+				{
+					"text": "llmauqfkpw",
+					"id": "bgrdxmumkn"
+				},
+				{
+					"text": "udthvecrhm",
+					"id": "vikygiwcfy"
+				},
+				{
+					"text": "lwekspwgko",
+					"id": "ksrrjavebh"
+				},
+				{
+					"text": "hpykkmgnel",
+					"id": "gpygxmrztp"
+				},
+				{
+					"text": "hrfsgjzpqx",
+					"id": "iequhaptcv"
+				}
+			],
+			"likes": 39,
+			"shares": 72
+		}
+	]
+}
+
 ```
 
 ## Installation
