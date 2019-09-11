@@ -30,8 +30,6 @@ dependencies:
 - system-filepath
 - system-fileio
 - http-types
-- mtl
-- lucid
 name: Howl
 version: 0.0.1.0
 extra-source-files:

@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 236c842d3e01cd548b2e53c919e75ceebbc3705c51132e750faf97b4556e89a4
+-- hash: 2abfa80584acc958e7b8e57f230fe949a6527dbb32df968dfc30f869ceff545f
 
 name:           Howl
 version:        0.0.1.0
@@ -29,6 +29,7 @@ library
   exposed-modules:
       Command
       Howl
+      HowlConfig
       SpockServer
   other-modules:
       Paths_Howl
@@ -40,8 +41,6 @@ library
     , base >=4.7 && <5
     , bytestring
     , http-types
-    , lucid
-    , mtl
     , optparse-applicative
     , random
     , scientific
@@ -69,8 +68,6 @@ executable howl
     , base >=4.7 && <5
     , bytestring
     , http-types
-    , lucid
-    , mtl
     , optparse-applicative
     , random
     , scientific
@@ -99,8 +96,6 @@ test-suite Howl-test
     , base >=4.7 && <5
     , bytestring
     , http-types
-    , lucid
-    , mtl
     , optparse-applicative
     , random
     , scientific
