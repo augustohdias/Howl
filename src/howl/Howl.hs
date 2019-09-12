@@ -1,11 +1,11 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedLists #-}
 
 module Howl
-    ( randomInstanceOf
-    , valueMapper
-    , getConfig
-    , getModel
-    )
+  ( randomInstanceOf
+  , getConfig
+  , getModel
+  )
 where
 
 
@@ -22,34 +22,50 @@ import           Control.Monad
 import           System.Random
 import           HowlTypes
 
+defaultArraySize = 5
+
 getConfig :: Object -> Maybe Value
 getConfig = H.lookup "_config"
 
 getModel :: Object -> Object
 getModel = H.delete "_config"
 
-randomInstanceOf :: Object -> [Config] -> IO Object
-randomInstanceOf model cfg = traverse valueMapper model
+randomInstanceOf :: HashMap Text Value -> [Config] -> IO Object
+randomInstanceOf object cfgs = traverseWithKey randomizeObject object
+  where randomizeObject = randomizeValue cfgs
 
-valueMapper :: Value -> IO Value
-valueMapper value = case value of
-    String _      -> String <$> randomStr
-    Number _      -> Number <$> randomNum
-    Object object -> Object <$> traverse valueMapper object
-    Array  array  -> Array <$> randomArray array 10
+randomizeValue :: [Config] -> Text -> Value -> IO Value
+randomizeValue cfgs key value = case value of
+  String _   -> newString
+  Number _   -> newNumber
+  Array  arr -> do
+    let listSize = H.lookupDefault defaultArraySize key $ loadConfigs cfgs
+    processArray (replicateArray arr listSize)
+  Object obj -> processObject obj
+ where
+  processArray :: Vector Value -> IO Value
+  processArray array = Array <$> traverse randomizeArray array
 
-randomArray :: Array -> Int -> IO (Vector Value)
-randomArray array size = do
-    let vector = V.concat $ copy size $ sample array
-    traverse valueMapper vector
-  where
-    sample = V.take 1
-    copy   = Prelude.replicate
+  processObject :: Object -> IO Value
+  processObject object = Object <$> traverseWithKey randomizeObject object
 
-randomStr :: IO Text
-randomStr = T.pack <$> copy (randomRIO ('a', 'z'))
-    where copy = Control.Monad.replicateM 10
+  randomizeObject = randomizeValue cfgs
+  randomizeArray  = randomizeValue cfgs key
 
-randomNum :: IO Scientific
-randomNum = createNumber <$> randomRIO (1, 100)
-    where createNumber n = scientific n 0
+-- Replication boilerplate
+
+replicateArray :: Array -> Int -> Vector Value
+replicateArray array size = V.concat $ copy size $ sampleUnity array
+ where
+  sampleUnity = V.take 1
+  copy        = Prelude.replicate
+
+-- Randomize
+
+newString :: IO Value
+newString = String . T.pack <$> copy (randomRIO ('a', 'z'))
+  where copy = Control.Monad.replicateM 10
+
+newNumber :: IO Value
+newNumber = Number . createNumber <$> randomRIO (1, 100)
+  where createNumber n = scientific n 0

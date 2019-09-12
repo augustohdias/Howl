@@ -1,24 +1,18 @@
 {
-    "anything": {
-        "anyNumber": 5,
-        "anyString": 10
-    },
-    "data": [
-        {
-            "albums": [
-                "Shine On Your Crazy Diamond",
-                "Sgt. Pepper's Lonely Hearts Club Band",
-                "Jazz Side Of The Moon"
-            ]
-        }
-    ],
-    "_config": {
-        "data": {
-            "size": 3,
-            "numericField": 1
-        },
-        "data.albums": {
-            "otherNumericField": 1
-        }
+  "anything": {
+    "anyNumber": 5,
+    "anyString": "asdoasnofas"
+  },
+  "data": [
+    {
+      "albums": [
+        "Shine On Your Crazy Diamond",
+        "Sgt. Pepper's Lonely Hearts Club Band",
+        "Jazz Side Of The Moon"
+      ]
     }
+  ],
+  "_config": {
+    "data": 3
+  }
 }

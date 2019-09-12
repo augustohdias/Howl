@@ -1,6 +1,6 @@
 module SpockServer
-    ( runServer
-    )
+  ( runServer
+  )
 where
 
 import qualified Data.ByteString.Lazy.Char8    as BS
@@ -23,16 +23,16 @@ type ServerM a = SpockM () () ServerState a
 
 runServer :: BS.ByteString -> IO ()
 runServer rawString = do
-    serverState <- ServerState <$> newIORef rawString
-    cfg         <- defaultSpockCfg () PCNoDatabase serverState
-    runSpock 7676 (spock cfg app)
+  serverState <- ServerState <$> newIORef rawString
+  cfg         <- defaultSpockCfg () PCNoDatabase serverState
+  runSpock 7676 (spock cfg app)
 
 app :: ServerM ()
 app = do
-    obj <- decode <$> (getState >>= liftIO . readIORef . rawString) 
-    response <- liftIO $ randomInstanceOf (getModel obj) (getConfigList obj)
-    get root $ json response
-  where
-    getConfigList a =
-        fromJust $ parseMaybe parseConfigList $ fromJust $ getConfig a
-    decode = fromJust . JSON.decode
+  obj      <- decode <$> (getState >>= liftIO . readIORef . rawString)
+  response <- liftIO $ randomInstanceOf (getModel obj) (getConfigList obj)
+  get root $ json response
+ where
+  getConfigList a =
+    fromJust $ parseMaybe parseConfigList $ fromJust $ getConfig a
+  decode = fromJust . JSON.decode
