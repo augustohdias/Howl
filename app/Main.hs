@@ -8,7 +8,9 @@ import qualified Turtle
 import qualified Howl
 import qualified System.Environment
 
-import           Prelude                 hiding ( FilePath, readFile )
+import           Prelude                 hiding ( FilePath
+                                                , readFile
+                                                )
 import           Filesystem                     ( readFile )
 import           Filesystem.Path.CurrentOS
 import           Options.Applicative
@@ -23,18 +25,18 @@ howlHeader = "Haskell Owl Fake API v0.0.1"
 
 main :: IO ()
 main = do
-    command <- showHelpOnErrorExecParser $ info
-        (helper <*> parseCommand)
-        (fullDesc <> progDesc howlProgDesc <> header howlHeader)
-    run command
+  command <- showHelpOnErrorExecParser $ info
+    (helper <*> parseCommand)
+    (fullDesc <> progDesc howlProgDesc <> header howlHeader)
+  run command
 
 run :: Command -> IO ()
 run command = case command of
-    CommandRead {..} -> runRead filePath
+  CommandRead {..} -> runRead filePath
 
 runRead :: FilePath -> IO ()
 runRead filePath = do
-    absolutePath <- Turtle.realpath filePath
-    modelJSON    <- readFile absolutePath
-    runServer $ BS.fromStrict modelJSON
-    return ()
+  absolutePath <- Turtle.realpath filePath
+  modelJSON    <- readFile absolutePath
+  runServer $ BS.fromStrict modelJSON
+  return ()
