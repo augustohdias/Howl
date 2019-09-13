@@ -12,9 +12,7 @@ for:
   -
     matrix:
       only:
-        - image: Visual Studio 2017
-    
-    clone_folder: C:/stack
+        - image: Visual Studio 2015
 
     cache:
       - '%STACK_ROOT%'
