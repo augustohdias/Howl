@@ -14,7 +14,7 @@ for:
       only:
         - image: Visual Studio 2017
     
-    clone_folder: C:\stack
+    clone_folder: C:/stack
 
     cache:
       - '%STACK_ROOT%'
