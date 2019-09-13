@@ -30,3 +30,9 @@ for:
       - ps: curl -sS -ostack.zip -L --insecure http://www.stackage.org/stack/windows-i386
       - ps: 7z x stack.zip stack.exe
       - ps: Write-Host "Installed."
+    
+    test_script:
+      - ps: write-host "Test"
+      - stack setup > nul
+      - echo "" | stack --no-terminal --install-ghc test --only-dependencies
+
