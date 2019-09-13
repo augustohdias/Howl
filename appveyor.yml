@@ -2,37 +2,51 @@ build: off
 
 version: 0.0.1.{build}
 
-image:
-  - Visual Studio 2017
-
 branches:
   only:
     - master
 
-for:
-  -
-    matrix:
-      only:
-        - image: Visual Studio 2017
-    
-    environment:
-      STACK_ROOT: 'C:\sr'
-      TMP: 'C:\tmp'
-      OS: windows
+clone_folder: C:\stack
 
-    cache:
-      - '%STACK_ROOT%'
-      - 'C:\Users\appveyor\AppData\Local\Programs\stack'
-    
-    install:
-      - ps: Write-Host "Installing Haskell Stack..."
-      - cmd: set PATH=C:\Program Files\Git\mingw64\bin;%PATH%
-      - ps: curl -sS -ostack.zip -L --insecure http://www.stackage.org/stack/windows-i386
-      - ps: 7z x stack.zip stack.exe
-      - ps: Write-Host "Installed."
-    
-    test_script:
-      - ps: write-host "Test"
-      - stack setup > nul
-      - echo "" | stack --no-terminal --install-ghc test --only-dependencies
+environment:
+  global:
+    STACK_ROOT: C:\sr
+    TMP: C:\tmp
 
+cache:
+  - '%STACK_ROOT%'
+  - 'C:\Users\appveyor\AppData\Local\Programs\stack'
+
+install:
+  - cmd: echo Installing HaskellStack..
+  - cmd: set PATH=C:\Program Files\Git\mingw64\bin;%PATH%
+  - cmd: curl -sS -ostack.zip -L --insecure http://www.stackage.org/stack/windows-i386
+  - cmd: 7z x stack.zip stack.exe
+  - cmd: dir /w /p
+  - cmd: echo Ending install
+
+test_script:
+  - echo start test_script
+  - dir /w /p
+  - stack setup > nul
+  - echo "" | stack --no-terminal test
+
+after_test:
+  - stack install
+  - 7z a howl.zip C:\Users\appveyor\AppData\Roaming\local\bin\howl.exe
+  - dir /w /p
+
+artifacts:
+  - path: howl.zip
+    name: Howl
+
+deploy:
+  - provider: GitHub
+    release: howl-v$(appveyor_build_version)-windows
+    artifact: Howl
+    draft: true
+    auth_token:
+      secure: TVsVRmN1rXlYJyeqnh84MvFLvnqvrPsB4SKkHYy5SOrOI19rHnJfr8pcWw40zyrp
+    prerelease: false
+    on:
+      branch: master                # release from master branch only
