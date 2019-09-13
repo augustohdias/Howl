@@ -3,7 +3,7 @@ build: off
 version: 0.0.1.{build}
 
 image:
-  - Visual Studio 2017
+  - Visual Studio
   - Ubuntu
 
 branches:
@@ -14,15 +14,15 @@ for:
   -
     matrix:
       only:
-        - image: Visual Studio 2017
+        - image: Visual Studio
 
     cache:
       - '%STACK_ROOT%'
       - 'C:\Users\appveyor\AppData\Local\Programs\stack'
 
     environment:
-      STACK_ROOT: C:\sr
-      TMP: C:\tmp
+      STACK_ROOT: 'C:\sr'
+      TMP: 'C:\tmp'
       OS: windows
     
     install:
