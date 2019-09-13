@@ -3,7 +3,7 @@ build: off
 version: 0.0.1.{build}
 
 image:
-  - Visual Studio 2017
+  - Visual Studio 2019
   - Ubuntu
 configuration:
   - Release
