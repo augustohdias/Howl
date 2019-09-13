@@ -1,5 +1,4 @@
-![Linux](https://travis-ci.com/augustohdias/Howl.svg?branch=master)
-![Windows](https://ci.appveyor.com/api/projects/status/github/augustohdias/Howl?svg=true&passingText=Windows%20Build:%20OK)
+![Build](https://ci.appveyor.com/api/projects/status/github/augustohdias/Howl?svg=true)
 
 # Haskell Owl (Howl)
 I like owls.
