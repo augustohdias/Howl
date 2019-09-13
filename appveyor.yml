@@ -87,7 +87,7 @@ for:
     
     deploy:
       - provider: GitHub
-        release: howl-v$APPVEYOR_BUILD_VERSION)
+        release: howl-v$APPVEYOR_BUILD_VERSION
         artifact: HowlLinux
         draft: true
         auth_token:
