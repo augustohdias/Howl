@@ -66,7 +66,7 @@ for:
       OS: linux
     
     cache:
-      - '$HOME/stack'
+      - '$HOME/.stack'
     
     install:
       - sh: mkdir -p ~/.local/bin
@@ -87,7 +87,7 @@ for:
     
     deploy:
       - provider: GitHub
-        release: howl-v$(appveyor_build_version)
+        release: howl-v$APPVEYOR_BUILD_VERSION)
         artifact: HowlLinux
         draft: true
         auth_token:
