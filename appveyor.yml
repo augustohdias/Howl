@@ -7,8 +7,6 @@ image:
   - Ubuntu
 configuration:
   - Release
-matrix:
-  - fast_finish: true
 for:
   -
     matrix:
