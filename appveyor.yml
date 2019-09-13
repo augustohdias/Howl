@@ -23,3 +23,10 @@ for:
     cache:
       - '%STACK_ROOT%'
       - 'C:\Users\appveyor\AppData\Local\Programs\stack'
+    
+    install:
+      - ps: Write-Host "Installing Haskell Stack..."
+      - cmd: set PATH=C:\Program Files\Git\mingw64\bin;%PATH%
+      - ps: curl -sS -ostack.zip -L --insecure http://www.stackage.org/stack/windows-i386
+      - ps: 7z x stack.zip stack.exe
+      - ps: Write-Host "Installed."
