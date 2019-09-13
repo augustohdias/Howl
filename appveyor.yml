@@ -2,51 +2,28 @@ build: off
 
 version: 0.0.1.{build}
 
-branches:
-  only:
-    - master
+image:
+  - Visual Studio 2017
+  - Ubuntu
+configuration:
+  - Release
+matrix:
+  - fast_finish: true
+for:
+  -
+    matrix:
+      only:
+        - image: Visual Studio 2017
+    environment:
+      OS: windows
+    test_script:
+      - ps: write-host $Env:OS
 
-clone_folder: C:\stack
-
-environment:
-  global:
-    STACK_ROOT: C:\sr
-    TMP: C:\tmp
-
-cache:
-  - '%STACK_ROOT%'
-  - 'C:\Users\appveyor\AppData\Local\Programs\stack'
-
-install:
-  - cmd: echo Installing HaskellStack..
-  - cmd: set PATH=C:\Program Files\Git\mingw64\bin;%PATH%
-  - cmd: curl -sS -ostack.zip -L --insecure http://www.stackage.org/stack/windows-i386
-  - cmd: 7z x stack.zip stack.exe
-  - cmd: dir /w /p
-  - cmd: echo Ending install
-
-test_script:
-  - echo start test_script
-  - dir /w /p
-  - stack setup > nul
-  - echo "" | stack --no-terminal test
-
-after_test:
-  - stack install
-  - 7z a howl.zip C:\Users\appveyor\AppData\Roaming\local\bin\howl.exe
-  - dir /w /p
-
-artifacts:
-  - path: howl.zip
-    name: Howl
-
-deploy:
-  - provider: GitHub
-    release: howl-v$(appveyor_build_version)-windows
-    artifact: Howl
-    draft: true
-    auth_token:
-      secure: TVsVRmN1rXlYJyeqnh84MvFLvnqvrPsB4SKkHYy5SOrOI19rHnJfr8pcWw40zyrp
-    prerelease: false
-    on:
-      branch: master                # release from master branch only
+  -
+    matrix:
+      only:
+        - image: Ubuntu
+    environment:
+      OS: linux
+    test_script:
+      - sh: echo $OS
