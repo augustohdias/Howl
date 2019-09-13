@@ -1,6 +1,6 @@
+# Haskell Owl (Howl)
 ![Build](https://ci.appveyor.com/api/projects/status/github/augustohdias/Howl?svg=true)
 
-# Haskell Owl (Howl)
 I like owls.
 
 ## Wut
