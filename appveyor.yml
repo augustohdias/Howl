@@ -3,7 +3,7 @@ build: off
 version: 0.0.1.{build}
 
 image:
-  - Visual Studio
+  - Visual Studio 2017
   - Ubuntu
 
 branches:
@@ -14,7 +14,9 @@ for:
   -
     matrix:
       only:
-        - image: Visual Studio
+        - image: Visual Studio 2017
+        
+    clone_folder: c/stack
 
     cache:
       - '%STACK_ROOT%'
