@@ -3,7 +3,7 @@ build: off
 version: 0.0.1.{build}
 
 image:
-  - Visual Studio 2019
+  - Windows
   - Ubuntu
 configuration:
   - Release
@@ -11,7 +11,7 @@ for:
   -
     matrix:
       only:
-        - image: Visual Studio 2017
+        - image: Windows
         
     cache:
       - '%STACK_ROOT%'
