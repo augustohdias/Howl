@@ -4,7 +4,6 @@ version: 0.0.1.{build}
 
 image:
   - Visual Studio 2017
-  - Ubuntu
 
 branches:
   only:
@@ -16,84 +15,4 @@ for:
       only:
         - image: Visual Studio 2017
         
-    clone_folder: c/stack
-
-    cache:
-      - '%STACK_ROOT%'
-      - 'C:\Users\appveyor\AppData\Local\Programs\stack'
-
-    environment:
-      STACK_ROOT: 'C:\sr'
-      TMP: 'C:\tmp'
-      OS: windows
-    
-    install:
-      - ps: Write-Host "Installing Haskell Stack..."
-      - cmd: set PATH=C:\Program Files\Git\mingw64\bin;%PATH%
-      - ps: curl -sS -ostack.zip -L --insecure http://www.stackage.org/stack/windows-i386
-      - ps: 7z x stack.zip stack.exe
-      - ps: Write-Host "Installed."
-
-    test_script:
-      - ps: write-host "Test"
-      - stack setup > nul
-      - echo "" | stack --no-terminal --install-ghc test --only-dependencies
-
-    after_test:
-      - ps: write-host "After tes"
-      - stack install
-      - ps: 7z a howl-"$($Env:OS)"-x86_64.zip C:\Users\appveyor\AppData\Roaming\local\bin\howl.exe
-
-    artifacts:
-      - path: howl-*.zip
-        name: HowlWindows
-
-    deploy:
-      - provider: GitHub
-        release: howl-v$(appveyor_build_version)
-        artifact: HowlWindows
-        draft: true
-        auth_token:
-          secure: TVsVRmN1rXlYJyeqnh84MvFLvnqvrPsB4SKkHYy5SOrOI19rHnJfr8pcWw40zyrp
-        prerelease: false
-        on:
-          branch: master
-
-  -
-    matrix:
-      only:
-        - image: Ubuntu
-        
-    environment:
-      OS: linux
-    
-    cache:
-      - '$HOME/stack'
-    
-    install:
-      - sh: mkdir -p ~/.local/bin
-      - sh: export PATH=$HOME/.local/bin:$PATH
-      - sh: curl -L https://get.haskellstack.org/stable/linux-x86_64.tar.gz | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
-    
-    test_script:
-      - sh: echo $OS
-      - sh: stack --no-terminal --install-ghc test --only-dependencies
-    
-    after_test:
-      - sh: stack install
-      - sh: tar -czvf "howl-$OS-x86_64.tar.gz" "$HOME/.local/bin/howl"
-      
-    artifacts:
-      - path: howl-*.tar.gz
-        name: HowlLinux
-    
-    deploy:
-      - provider: GitHub
-        release: howl-v$(appveyor_build_version)
-        artifact: HowlLinux
-        draft: true
-        auth_token:
-          secure: TVsVRmN1rXlYJyeqnh84MvFLvnqvrPsB4SKkHYy5SOrOI19rHnJfr8pcWw40zyrp
-        prerelease: false
-        on:
-          branch: master
+    clone_folder: C:/stack
