@@ -14,5 +14,12 @@ for:
     matrix:
       only:
         - image: Visual Studio 2017
-        
-    clone_folder: C:/stack
+    
+    environment:
+      STACK_ROOT: 'C:\sr'
+      TMP: 'C:\tmp'
+      OS: windows
+
+    cache:
+      - '%STACK_ROOT%'
+      - 'C:\Users\appveyor\AppData\Local\Programs\stack'
