@@ -2,52 +2,96 @@ build: off
 
 version: 0.0.1.{build}
 
+image:
+  - Visual Studio 2015
+  - Ubuntu
+
 branches:
   only:
     - master
 
-clone_folder: C:\stack
+for:
+  -
+    matrix:
+      only:
+        - image: Visual Studio 2015
 
-environment:
-  global:
-    STACK_ROOT: C:\sr
-    TMP: C:\tmp
+    environment:
+      STACK_ROOT: 'C:\sr'
+      TMP: 'C:\tmp'
+      OS: windows
+    
+    cache:
+      - '%STACK_ROOT%'
+      - 'C:\Users\appveyor\AppData\Local\Programs\stack'
 
-cache:
-  - '%STACK_ROOT%'
-  - 'C:\Users\appveyor\AppData\Local\Programs\stack'
+    install:
+      - ps: Write-Host "Installing Haskell Stack..."
+      - cmd: set PATH=C:\Program Files\Git\mingw64\bin;%PATH%
+      - cmd: curl -sS -ostack.zip -L --insecure http://www.stackage.org/stack/windows-i386
+      - cmd: 7z x stack.zip stack.exe
+      - ps: Write-Host "Installed."
 
-install:
-  - ps: Write-host $Env:APPVEYOR_BUILD_WORKER_IMAGE
-  - cmd: echo Installing HaskellStack..
-  - cmd: set PATH=C:\Program Files\Git\mingw64\bin;%PATH%
-  - cmd: curl -sS -ostack.zip -L --insecure http://www.stackage.org/stack/windows-i386
-  - cmd: 7z x stack.zip stack.exe
-  - cmd: dir /w /p
-  - cmd: echo Ending install
+    test_script:
+      - ps: write-host "Test"
+      - stack setup > nul
+      - echo "" | stack --no-terminal --install-ghc test --only-dependencies
 
-test_script:
-  - echo start test_script
-  - dir /w /p
-  - stack setup > nul
-  - echo "" | stack --no-terminal test
+    after_test:
+      - ps: write-host "After tes"
+      - stack install
+      - ps: 7z a howl-"$($Env:OS)"-x86_64.zip C:\Users\appveyor\AppData\Roaming\local\bin\howl.exe
 
-after_test:
-  - stack install
-  - 7z a howl.zip C:\Users\appveyor\AppData\Roaming\local\bin\howl.exe
-  - dir /w /p
+    artifacts:
+      - path: howl-*.zip
+        name: HowlWindows
 
-artifacts:
-  - path: howl.zip
-    name: Howl
+    deploy:
+      - provider: GitHub
+        release: howl-v$(appveyor_build_version)
+        artifact: HowlWindows
+        draft: true
+        auth_token:
+          secure: TVsVRmN1rXlYJyeqnh84MvFLvnqvrPsB4SKkHYy5SOrOI19rHnJfr8pcWw40zyrp
+        prerelease: false
+        on:
+          branch: master
 
-deploy:
-  - provider: GitHub
-    release: howl-v$(appveyor_build_version)-windows
-    artifact: Howl
-    draft: true
-    auth_token:
-      secure: TVsVRmN1rXlYJyeqnh84MvFLvnqvrPsB4SKkHYy5SOrOI19rHnJfr8pcWw40zyrp
-    prerelease: false
-    on:
-      branch: master                # release from master branch only
+  -
+    matrix:
+      only:
+        - image: Ubuntu
+        
+    environment:
+      OS: linux
+    
+    cache:
+      - '$HOME/stack'
+    
+    install:
+      - sh: mkdir -p ~/.local/bin
+      - sh: export PATH=$HOME/.local/bin:$PATH
+      - sh: curl -L https://get.haskellstack.org/stable/linux-x86_64.tar.gz | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
+    
+    test_script:
+      - sh: echo $OS
+      - sh: stack --no-terminal --install-ghc test --only-dependencies
+    
+    after_test:
+      - sh: stack install
+      - sh: tar -czvf "howl-$OS-x86_64.tar.gz" "$HOME/.local/bin/howl"
+      
+    artifacts:
+      - path: howl-*.tar.gz
+        name: HowlLinux
+    
+    deploy:
+      - provider: GitHub
+        release: howl-v$(appveyor_build_version)
+        artifact: HowlLinux
+        draft: true
+        auth_token:
+          secure: TVsVRmN1rXlYJyeqnh84MvFLvnqvrPsB4SKkHYy5SOrOI19rHnJfr8pcWw40zyrp
+        prerelease: false
+        on:
+          branch: master
