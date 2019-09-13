@@ -3,49 +3,56 @@ build: off
 version: 0.0.1.{build}
 
 image:
+  - Visual Studio 2017
   - Ubuntu
 
-cache:
-  - '%STACK_ROOT%'
-  - 'C:\Users\appveyor\AppData\Local\Programs\stack'
-
-environment:
-  STACK_ROOT: C:\sr
-  TMP: C:\tmp
-  OS: windows
-
-install:
-  - ps: Write-Host "Installing Haskell Stack..."
-  - cmd: set PATH=C:\Program Files\Git\mingw64\bin;%PATH%
-  - ps: curl -sS -ostack.zip -L --insecure http://www.stackage.org/stack/windows-i386
-  - ps: 7z x stack.zip stack.exe
-  - ps: Write-Host "Installed."
-
-test_script:
-  - ps: write-host $Env:OS
-  - stack setup > nul
-  - echo "" | stack --no-terminal --install-ghc test --only-dependencies
-
-after_test:
-  - stack install
-  - ps: 7z a howl-"$($Env:OS)"-x86_64.zip C:\Users\appveyor\AppData\Roaming\local\bin\howl.exe
-
-artifacts:
-  - path: howl-*.zip
-    name: HowlWindows
-
-deploy:
-  - provider: GitHub
-    release: howl-v$(appveyor_build_version)
-    artifact: HowlWindows
-    draft: true
-    auth_token:
-      secure: TVsVRmN1rXlYJyeqnh84MvFLvnqvrPsB4SKkHYy5SOrOI19rHnJfr8pcWw40zyrp
-    prerelease: false
-    on:
-      branch: master
 
 for:
+  -
+    matrix:
+      only:
+        - image: Visual Studio 2017
+#    cache:
+#      - '%STACK_ROOT%'
+#      - 'C:\Users\appveyor\AppData\Local\Programs\stack'
+
+    environment:
+      STACK_ROOT: C:\sr
+      TMP: C:\tmp
+      OS: windows
+
+    install:
+      - ps: Write-Host "Installing Haskell Stack..."
+      # - cmd: set PATH=C:\Program Files\Git\mingw64\bin;%PATH%
+      # - ps: curl -sS -ostack.zip -L --insecure http://www.stackage.org/stack/windows-i386
+      # - ps: 7z x stack.zip stack.exe
+      # - ps: Write-Host "Installed."
+
+    test_script:
+      - ps: write-host "Test"
+      # - stack setup > nul
+      # - echo "" | stack --no-terminal --install-ghc test --only-dependencies
+
+    after_test:
+      - ps: write-host "After tes"
+      - stack install
+      - ps: 7z a howl-"$($Env:OS)"-x86_64.zip C:\Users\appveyor\AppData\Roaming\local\bin\howl.exe
+
+    artifacts:
+      - path: howl-*.zip
+        name: HowlWindows
+
+    deploy:
+      - provider: GitHub
+        release: howl-v$(appveyor_build_version)
+        artifact: HowlWindows
+        draft: true
+        auth_token:
+          secure: TVsVRmN1rXlYJyeqnh84MvFLvnqvrPsB4SKkHYy5SOrOI19rHnJfr8pcWw40zyrp
+        prerelease: false
+        on:
+          branch: master
+
   -
     matrix:
       only:
@@ -84,6 +91,3 @@ for:
         prerelease: false
         on:
           branch: master
-
-      
-      
