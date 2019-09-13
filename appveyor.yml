@@ -3,7 +3,7 @@ build: off
 version: 0.0.1.{build}
 
 image:
-  - Visual Studio 2015
+  - Visual Studio 2017
   - Ubuntu
 
 branches:
@@ -14,7 +14,7 @@ for:
   -
     matrix:
       only:
-        - image: Visual Studio 2015
+        - image: Visual Studio 2017
 
     cache:
       - '%STACK_ROOT%'
