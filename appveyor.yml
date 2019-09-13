@@ -18,6 +18,7 @@ cache:
   - 'C:\Users\appveyor\AppData\Local\Programs\stack'
 
 install:
+  - ps: Write-host $Env:APPVEYOR_BUILD_WORKER_IMAGE
   - cmd: echo Installing HaskellStack..
   - cmd: set PATH=C:\Program Files\Git\mingw64\bin;%PATH%
   - cmd: curl -sS -ostack.zip -L --insecure http://www.stackage.org/stack/windows-i386
