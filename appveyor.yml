@@ -3,7 +3,7 @@ build: off
 version: 0.0.1.{build}
 
 image:
-  - Windows
+  - Windows Server 2019	
   - Ubuntu
 configuration:
   - Release
@@ -11,7 +11,7 @@ for:
   -
     matrix:
       only:
-        - image: Windows
+        - image: Windows Server 2019	
         
     cache:
       - '%STACK_ROOT%'
