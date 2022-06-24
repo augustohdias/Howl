@@ -209,7 +209,7 @@ Peform `GET localhost:7676/` and you should get something like this:
 
 ## Installation
 
-You can compile or get the [pre-built releases](https://github.com/augustohdias/Howl/releases).
+You can compile from source or get it from [pre-built releases](https://github.com/augustohdias/Howl/releases).
 
 ### Linux
 
@@ -223,7 +223,7 @@ sudo apt install ltinfo-dev
 
 #### Compilation guide
 
-After you get both, you're ready to compile.
+Assuming you have the dependencies installed:
 
 1. Install [stack](https://docs.haskellstack.org/en/stable/README/).
 2. Run the commands below.
@@ -239,7 +239,7 @@ Make sure `~/.local/bin` is on your `PATH`.
 
 ### Windows
 
-I still don't care about Windows.
+~I don't care about Windows.~
 
 #### Compilation guide
 
